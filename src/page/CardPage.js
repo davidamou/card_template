@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
+
 import video from '../assets/video/video.mp4'
 import github from '../assets/icons/github.svg'
 import instagram from '../assets/icons/instagram.svg'
@@ -8,6 +9,34 @@ import linkedin from '../assets/icons/linkedin.svg'
 import twitter from '../assets/icons/twitter.svg'
 import avatar from '../assets/images/avatar.jpg'
 import arrowRight from '../assets/icons/arrow-right.svg'
+
+const fadAnimation = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
+const transition = keyframes`
+  from {
+    transform: translateX(8px) translatey(8px);
+  }
+  to {
+    transform: translateX(0) translateY(0);
+  }
+`
+
+const fadTransform = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`
 
 const Container = styled.div`
   display: flex;
@@ -21,11 +50,13 @@ const Container = styled.div`
     height: auto;
   }
 `
+
 const Card = styled.div`
-  width: 640px;
-  border-radius: 32px;
+  width: 40em;
+  border-radius: 2em;
   overflow-x: hidden;
   background-color: white;
+  animation: ${fadAnimation} 1s linear running;
 
   @media(max-width: 600px) {
     width: 100%;
@@ -33,23 +64,26 @@ const Card = styled.div`
   }
 `
 const HeaderPadding = styled.div`
-  margin: 64px 32px 24px 32px;
+  margin: 4em 2.5em 2.5em 2.5em;
+  @media(max-width: 600px) {
+    margin: 3em 1.5em 1.5em 1.5em;
+  }
 `
 const CardHeader = styled.div`
   position: relative;
-  height: 420px;
+  height: 28em;
   width: 100%;
 
   @media(max-width: 600px) {
-    height: 540px;
+    height: 35em;
   }
 
   @media(max-width: 380px) {
-    height: 584px;
+    height: 38em;
   }
 
   @media (max-width: 280px) {
-    height: 624px;
+    height: 40em;
   }
 `
 const Video = styled.video`
@@ -79,40 +113,40 @@ const HeaderContent = styled.div`
 `
 
 const TitleBody = styled.h2`
-  margin-bottom: 24px;
+  margin-bottom: 1.5em;
 `
 
 const Content = styled.div`
   flex: 1;
-  margin: 40px;
+  margin: 2.5em;
   @media (max-width: 600px) {
-    margin-bottom: 24px;
-    margin-top: 24px;
+    margin: 1.5em;
   }
 `
 
 const Divider = styled.div`
-  width: 1px;
+  width: 0.05em;
   background-color: #afafaf;
 
   @media (max-width: 600px) {
-    height: 1px;
-    margin: 24px 0 24px 0;
+    height: 0.05em;
+    margin: 1.5em 0 1.5em 0;
     width: 100%;
   }
 `
 const Button = styled.button`
-  padding: 12px 24px;
+  padding: 0.7em 1.5em;
   width: 100%;
   background-color: white;
-  border: 2.5px solid rgba(0, 0, 0, 0.8);
-  font-size: 16px;
+  border: 0.1em solid rgba(0, 0, 0, 0.8);
+  font-size: 1rem;
   cursor: pointer;
   font-weight: bold;
-  border-radius: 50px;
+  border-radius: 10em;
   transform: scale(1);
   display: flex;
   align-items: center;
+  animation: ${transition} 1s ease-out running;
   justify-content: space-between;
   transition: transform 0.2s ease-in-out;
   &:hover {
@@ -120,9 +154,8 @@ const Button = styled.button`
     border-color: black;
   }
   img {
-    width: 24px;
-    height: 24px;
-    margin-left: 24px;
+    width: 1.4em;
+    height: 1.4em;
   }
 `
 const SizedBox = styled.div`
@@ -139,22 +172,29 @@ const Wrap = styled.div`
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+  margin-left: 1.5em;
+  @media(max-width: 600px) {
+    margin-left: 0;
+  }
 `
 
 const IconButton = styled.button`
   border-radius: 100%;
-  margin: 0 16px 16px 0;
+  margin: 0 1em 1em 0;
   background-color: white;
-  width: 52px;
-  height: 52px;
+  width: 4em;
+  height: 4em;
+  display: flex;
   cursor: pointer;
-  padding: 10px;
+  padding: 0.8em;
   border: none;
   transform: translateY(0);
-  transition: transform 0.2s ease-in-out;
+  animation: ${fadTransform} ${props => props.duration} ease-in-out running;
+  transition: transform  0.3s ease-out;
   img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
   &:hover {
     transform: translateY(-4px);
@@ -163,6 +203,7 @@ const IconButton = styled.button`
 
 const FlexBox = styled.div`
   display: flex;
+  align-items: start;
   
   @media(max-width: 600px) {
     flex-direction: column;
@@ -170,8 +211,8 @@ const FlexBox = styled.div`
 `
 
 const Avatar = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 6em;
+  height: 6em;
   border-radius: 100%;
   overflow: hidden;
 
@@ -180,20 +221,19 @@ const Avatar = styled.div`
   } 
 `
 const Circle = styled.div`
-  padding: 8px;
-  width: 100px;
-  height: 100px;
+  padding: .4em;
+  width: 6em;
+  height: 6em;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 4px solid white;
+  border: .2em solid white;
   border-radius: 100%;
 `
 const ActivityName = styled.h2`
   font-size: 0.9rem;
   color: white;
 `
-
 function CardPage() {
     return (
         <Container>
@@ -207,34 +247,34 @@ function CardPage() {
                                     <img src={avatar} alt='avatar'/>
                                 </Avatar>
                             </Circle>
-                            <SizedBox height='28px' width='20px'/>
+                            <SizedBox height='2em' width='1.5em'/>
                             <ActivityName>SOFTWARE ENGINEER</ActivityName>
-                            <SizedBox height='24px' width='20px'/>
+                            <SizedBox height='1.5em' width='1em'/>
                             <FlexBox>
                                 <HeaderContent>
                                     <TitleHeader>Amouzou David</TitleHeader>
-                                    <SizedBox height='24px' width='20px'/>
+                                    <SizedBox height='1.5em' width='1em'/>
                                     <p>Etiam lorem ipsum, suspendisse faucibus sed interdum posuere lorem ipsum
                                         dolor.</p>
                                 </HeaderContent>
-                                <SizedBox width='24px'/>
+                                <SizedBox width='2em'/>
                                 <Wrap>
-                                    <IconButton>
+                                    <IconButton duration='200ms'>
                                         <img src={github} alt="github"/>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton duration='400ms'>
                                         <img src={instagram} alt="instagram"/>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton duration='600ms'>
                                         <img src={phone} alt="phone"/>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton duration='800ms'>
                                         <img src={twitter} alt="twitter"/>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton duration='1000ms'>
                                         <img src={mail} alt="mail"/>
                                     </IconButton>
-                                    <IconButton>
+                                    <IconButton duration='1200ms'>
                                         <img src={linkedin} alt="linkedin"/>
                                     </IconButton>
                                 </Wrap>
@@ -250,7 +290,7 @@ function CardPage() {
                     <Divider/>
                     <Content>
                         <Button>Etiam faucibus <img src={arrowRight} alt='arrow-right'/></Button>
-                        <SizedBox height='16px' width='16px'/>
+                        <SizedBox height='1em' width='1em'/>
                         <Button>Sed interdum <img src={arrowRight} alt='arrow-right'/></Button>
                     </Content>
                 </CardBody>
