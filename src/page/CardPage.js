@@ -75,15 +75,11 @@ const CardHeader = styled.div`
   width: 100%;
 
   @media(max-width: 600px) {
-    height: 35em;
-  }
-
-  @media(max-width: 380px) {
-    height: 38em;
+    height: 32.5em;
   }
 
   @media (max-width: 280px) {
-    height: 40em;
+    height: 36.5em;
   }
 `
 const Video = styled.video`
